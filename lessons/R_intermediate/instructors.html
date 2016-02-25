@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>Software Carpentry: Lesson Title</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/swc.css" />
+    <link rel="alternate" type="application/rss+xml" title="Software Carpentry Blog" href="http://software-carpentry.org/feed.xml"/>
+    <meta charset="UTF-8" />
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body class="lesson">
+    <div class="container card">
+      <div class="banner">
+        <a href="http://software-carpentry.org" title="Software Carpentry">
+          <img alt="Software Carpentry banner" src="img/software-carpentry-banner.png" />
+        </a>
+      </div>
+      <article>
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+                    <a href="index.html"><h1 class="title">Lesson Title</h1></a>
+          <h2 class="subtitle">Instructors Guide</h2>
+          <h2 id="preface">Preface</h2>
+<p>The goal of this lesson is to teach researchers already experienced with R some useful programming concepts that will make writing code more efficient (e.g. functions, loops, etc.), as well as more advanced data analysis packages (that I find useful in my day to day work) that they are unlikely to have encountered before.</p>
+<p>The programming concepts taught here are identical to those in the novice lessons: task automation using for loops, control flow, and functions. We found that at the University of Melbourne, and in the life sciences in particular, there were many researchers who use R but had never been taught programming. This meant that although the novice material was way too slow, they were still missing the fundamentals of scientific computing.</p>
+<p>This lesson is a first step towards addressing this niche. It has only been taught once, and the lessons written down after they were taught.</p>
+<h2 id="pacing">Pacing</h2>
+<p>We moved through a lot of this material very quickly. The group was extremely switched on, all came from the same lab, and experienced programmers were paired with less experienced students. The focus was to expose the group to concepts they wouldnt otherwise be familiar with so they had a starting point to learn from later.</p>
+<p>We broke for challenges only for the key programming concepts (i.e. loops, functions, control flow). Attendees were generally happy to follow along without challenges for the other topics, so we were able to cover a lot of material. exposing attendees to concepts and packages they might find useful later.</p>
+<h2 id="lesson-data">Lesson data</h2>
+<p>This lesson is based around the <a href="http://www.gapminder.org/">gapminder</a> dataset. It contains interesting data about countries around the world: their gdp, population, and life expectancy, over a 50 year interval. It is provided as a single csv file, which can be read in as a single <code>data.frame</code>.</p>
+<h2 id="lesson-topics-and-packages">Lesson topics and packages</h2>
+<p>The majority of this lesson is based around efficient manipulation of data, once you have loaded into R. The first lesson is on the <code>data.table</code> package, and the syntax used to access rows, columns, and subset <code>data.table</code> objects is used throughout the lesson.</p>
+<p>Next, we introduce the idea of “dirty” data: that often you will be given data that isn’t in the ideal format for analysis. We teach the <code>reshape2</code> package for converting <code>data.frames</code> and <code>data.tables</code> from wide to long format and back again.</p>
+<p>We then move on to basic programming tools for task automation: covering for loops, then the <code>apply</code> family of functions, because most people we talk to have heard of them, seen them, but are thoroughly confused by them. Then we move on to control flow (<code>if</code>, <code>else</code>). Note that although the control flow lessons contain sections on <code>for</code> and <code>while</code> loops, we covered these before <code>apply</code>. In general I would suggest leaving control flow until after the functions lesson, because they are much more naturally useful inside functions.</p>
+<p>After slogging through several programming heavy topics, we break up the lesson with a short demo of R markdown and let attendees play for 20 minutes. Next we show <code>plyr</code> as a way of solving “split-apply-combine” problems before moving on to a whirlwind tour of parallel computing and the <code>foreach</code> package. <code>foreach</code> is useful even when not dispatched over multiple cores because it allows you to flexibly combine the output of the loop into one data structure. Finally we end the lessons with functions.</p>
+<p>Plotting was omitted from these lessons as the group had one of their own come in for an additional half day of lessons, and we were told they would mostly be covering plotting there. They ended up covering <code>magrittr</code> and package development instead.</p>
+        </div>
+      </div>
+      </article>
+      <div class="footer">
+        <a class="label swc-blue-bg" href="http://software-carpentry.org">Software Carpentry</a>
+        <a class="label swc-blue-bg" href="https://github.com/swcarpentry/lesson-template">Source</a>
+        <a class="label swc-blue-bg" href="mailto:admin@software-carpentry.org">Contact</a>
+        <a class="label swc-blue-bg" href="LICENSE.html">License</a>
+      </div>
+    </div>
+    <!-- Javascript placed at the end of the document so the pages load faster -->
+    <script src="http://software-carpentry.org/v5/js/jquery-1.9.1.min.js"></script>
+    <script src="css/bootstrap/bootstrap-js/bootstrap.js"></script>
+  </body>
+</html>

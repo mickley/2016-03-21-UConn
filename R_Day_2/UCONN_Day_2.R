@@ -72,7 +72,7 @@ filter(surveys, year == 1995)
 
 surveys %>% filter(weight < 5) %>% select(species_id, sex, weight)
 
-# challenge: create an object that contains species_id, weight, and sex for animals that are equal or greater than 200. 
+# Challenge #2: create an object that contains species_id, weight, and sex for animals with weights that are equal or greater than 200 grams. 
 
 
 # Subset the data to include rows before 1995, retain columns year, sex, weight

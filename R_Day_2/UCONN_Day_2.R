@@ -63,13 +63,10 @@ str(surveys)
 select(surveys, plot_id, species_id, weight)
 
 # filter grabs rows
-# Challenge, how do we grab only year 1995? 
+# How do we grab only year 1995? 
 
-
-
-
-# answer
 filter(surveys, year == 1995)
+
 
 # Pipes %>% - a specific type of pipe (not like a Unix pipe) that comes from the magrittr package. Allow you to select and filter at the same time. 
 
@@ -77,7 +74,6 @@ surveys %>% filter(weight < 5) %>% select(species_id, sex, weight)
 
 # challenge: create an object that contains species_id, weight, and sex for animals that are equal or greater than 200. 
 
-# What is the range of weight in the data? 
 
 # Subset the data to include rows before 1995, retain columns year, sex, weight
 
@@ -87,14 +83,10 @@ surveys %>% filter(weight < 5) %>% select(species_id, sex, weight)
 
 
 # answer
-s1 <- surveys %>% filter(weight >= 200) %>% select(species_id, weight, sex)
-s1
-range(surveys$weight, na.rm = TRUE)
-range(surveys[, 9], na.rm = TRUE)
-
 s2 <- surveys %>% filter(year < 1995) %>% select(year, sex, weight)
 dim(s2)
 head(s2)
+
 
 
 ### Mutate - creates new columns based on values in existing columns
@@ -131,7 +123,8 @@ surveys %>% group_by(sex, species_id) %>% summarize(mean_weight = mean(weight, n
 
 # Use group_by() and summarise() to find mean, min and max hindfoot lenght for each species.
 
-# what was the heaviest animal measured in each year? Return columns: year, genus, species, weight
+
+
 
 
 
@@ -143,7 +136,7 @@ surveys %>% filter(!is.na(hindfoot_length)) %>% group_by(species) %>% summarise(
 
 surveys %>% group_by(species) %>% filter(!is.na(hindfoot_length)) %>% summarise(mean_hl = mean(hindfoot_length), min_hl = min(hindfoot_length), max_hl = max(hindfoot_length))
 
-surveys %>% filter(!is.na(weight)) %>% group_by(year) %>% select(year, genus, species, weight) %>% filter(weight == max(weight))
+
 
 # BREAK!
 
@@ -153,6 +146,8 @@ surveys %>% filter(!is.na(weight)) %>% group_by(year) %>% select(year, genus, sp
 # Learning objectives:
 # visual data
 # understand how to plot data with ggplot2
+setwd("~/Desktop/UCONN_SWC_day2")
+
 
 install.packages("ggplot2", depend = TRUE)
 
@@ -241,15 +236,9 @@ ggplot(data = surveys_complete, aes(x = species_id, y = weight)) + geom_jitter(a
 
 
 ## Challenges
-# Boxplots are useful summaries, but hide the shape of the distribution. For example, if there is a bimodal distribution, this would not be observed with a boxplot. An alternative is a violin plot (sometimes known as a beanplot), where the shape (of the density of points) is drawn.
-
-# Replace the box plot with a violin plot; see geom_violin()
-
-# In many types of data, it is important to consider the scale of the observations. For example, it may be worth changing the scale of the axis to better distribute the observations in the space of the plot. Changing the scale of the axes is done similarly to adding/modifying other components (i.e., by incrementally adding commands).
-
-# Represent weight on the log10 scale; see scale_y_log10()
 
 # Create boxplot for hindfoot_length.
+
 
 ## Plotting time series data
 # Let’s calculate number of counts per year for each species. To do that we need to group data first and count records within each group.
@@ -301,8 +290,6 @@ yearly_weight <- surveys_complete %>% group_by(year, species_id, sex) %>% summar
 ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) + geom_line() + theme_bw()
 
 
-# why do you think we see those steps in the plot?
-
 # make separate plots per sex since weight of males and females can differ a lot
 ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group = species_id)) + geom_line() + facet_wrap(~ sex) + theme_bw() 
 
@@ -311,12 +298,12 @@ ggplot(data = yearly_weight, aes(x=year, y=avg_weight, color = species_id, group
 ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) + geom_line() + facet_wrap(~ species_id)+ labs(title = 'Observed species in time', x = 'Year of observation', y = 'Number of species') + theme_bw()
 
 # Thanks to our efforts, axes have much more informative names, yet quite small so it could be hard to read them. Let’s change their size (and font just in sake of fun):
-ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) + geom_line() + facet_wrap(~ species_id) + labs(title = 'Observed species in time', x = 'Year of observation', y = 'Number of species') + theme(text=element_text(size=16, family="Arial")) + theme_bw()
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) + geom_line() + facet_wrap(~ species_id) + labs(title = 'Observed species in time', x = 'Year of observation', y = 'Number of species') + theme(text = element_text(size = 16, family = "Arial")) + theme_bw()
 
 # After our manipulations we notice that the values on the x-axis are still not properly readable. Let’s change
 the orientation of the labels and adjust them vertically and horizontally so they don’t overlap. You can use
 a 90 degree angle, or experiment to find the appropriate angle for diagonally oriented labels.
-ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) + geom_line() + facet_wrap(~ species_id) + theme_bw() + theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5), axis.text.y = element_text(colour="grey20", size=12), text=element_text(size=16, family="Arial")) + labs(title = 'Observed species in time', x = 'Year of observation', y = 'Number of species')
+ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex)) + geom_line() + facet_wrap(~ species_id) + theme_bw() + theme(axis.text.x = element_text(colour="grey20", size=12, angle=90, hjust=.5, vjust=.5), axis.text.y = element_text(color = "grey20", size = 12), text=element_text(size = 16, family = "Arial")) + labs(title = 'Observed species in time', x = 'Year of observation', y = 'Number of species')
 
 # Now, labels became bigger and readable, but there are still few things that one could be improved.
 # Please, take another five minutes and try to add another one or two things, to make it look even more beautiful. Use ggplot2 cheat sheet, which we linked earlier for inspiration.
@@ -327,24 +314,4 @@ ggplot(data = yearly_sex_counts, aes(x = year, y = n, color = sex, group = sex))
 ggsave("observed_species_in_time.png", width=15, height=10)
 
 
-# R and SQL
-setwd("~/Desktop/Projects/Data-Carpentry/1314459")
 
-
-library("RSQLite")
-
-my_db <- "Training_Portal.sqlite"
-
-conn <- dbConnect(drv = SQLite(), dbname = my_db)
-
-head(dbGetQuery(conn, "SELECT * FROM surveys"))
-
-dbListTables(conn)
-dbListFields(conn, "surveys")
-
-q <- "SELECT surveys.plot_id, COUNT(DISTINCT species.genus) FROM surveys JOIN species ON surveys.species_id=species.species_id GROUP BY surveys.plot_id"
-res <- dbGetQuery(conn, q)
-res
-
-
-dbDisconnect(conn)
